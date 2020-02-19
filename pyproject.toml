@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "hashcode2020"
+version = "0.1.0"
+description = ""
+authors = ["Valentin Calomme <info@valentincalomme.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+pyschedule = "^0.2.34"
+pulp = "^2.0"
+
+[tool.poetry.dev-dependencies]
+black = "^19.10b0"
+flake8 = "^3.7.9"
+tqdm = "^4.42.1"
+jupyter = "^1.0.0"
+ipython = "^7.12.0"
+pytest = "^5.3.5"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
