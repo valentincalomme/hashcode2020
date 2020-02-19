@@ -1,8 +1,3 @@
-pulp==2.0 \
-    --hash=sha256:d859527dc7790c24ae828a31da14edca12869ee85dbffc946fb5ecbcd3eaff4f \
-    --hash=sha256:fb0b0e8073aa82f3459c4241b9625e0ccd26c0838ad8253c6bc67e041901b765
-pyparsing==2.4.6 \
-    --hash=sha256:c342dccb5250c08d45fd6f8b4a559613ca603b57498511740e65cd11a2e7dcec \
-    --hash=sha256:4c830582a84fb022400b85429791bc551f1f4871c33f23e44f353119e92f969f
-pyschedule==0.2.34 \
-    --hash=sha256:6bba9e9ea07906ce2dfe3cd847c1822b137f6b13e9f975c50b347312fd98e110
+pulp==2.0
+pyparsing==2.4.6
+pyschedule==0.2.34
