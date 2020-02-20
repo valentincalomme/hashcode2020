@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import copy
+
 
 class Problem:
     """Problem to solve"""
@@ -24,39 +26,43 @@ class Problem:
             text representation of the problem
         """
 
-        rows = raw.split('\n')
+        rows = raw.split("\n")
 
         def get_row_data(row: str):
             temp = []
-            for info in row.split(' '):
-                if info == '':
-                    g=2
+            for info in row.split(" "):
+                if info == "":
+                    g = 2
                 temp.append(int(info))
             return temp
 
         # Parse header
         header = get_row_data(rows[0])
-        self.num_books      = header[0]  # B = Number of different books
-        self.num_libraries  = header[1]  # L = Number of libraries
-        self.num_days       = header[2]  # D =Number of days available
+        self.num_books = header[0]  # B = Number of different books
+        self.num_libraries = header[1]  # L = Number of libraries
+        self.num_days = header[2]  # D =Number of days available
         self.book_scores = get_row_data(rows[1])  # Scores for each Book
 
         # Parse sections
         self.libraries = []
-        for j in range(2, len(rows)-2, 2):
-            if rows[j] == '':
+        for j in range(2, len(rows) - 2, 2):
+            if rows[j] == "":
                 # For some reason the different data files are inconsistent and may contain 1 OR 2 empty lines at the end of the file (?)
                 # Just skip empty lines..
                 continue
-            library_info = get_row_data(rows[j])   # Info about library
-            books_in_library = get_row_data(rows[j+1])  # List of book ids in this library
+            library_info = get_row_data(rows[j])  # Info about library
+            books_in_library = get_row_data(
+                rows[j + 1]
+            )  # List of book ids in this library
 
             books = [Book(book, self.book_scores[book]) for book in books_in_library]
             Library_num_books = library_info[0]  # unused
             signup_process = library_info[1]
             books_per_day = library_info[2]
-            library_id = int(j/2)
-            self.libraries.append(Library(library_id, books, signup_process, books_per_day))
+            library_id = int(j / 2) - 1
+            self.libraries.append(
+                Library(library_id, books, signup_process, books_per_day)
+            )
 
 
 class Book:
@@ -80,9 +86,32 @@ class Library:
         self.sign_up_time = sign_up_time
         self.books_per_day = books_per_day
 
+        self.books_to_scan = []
+        self.sign_up_day = None
 
-class Time:
-    def __init__(self, days: int):
+    def next_books_to_scan(self, scanned_books: Set[Book]):
 
-        self.days = days
-        self.current_day = 0
+        books_worth_scanning = list(set(self.books).difference(scanned_books))
+
+        books_worth_scanning = sorted(
+            books_worth_scanning, key=lambda x: x.book_score, reverse=True
+        )
+
+        score = sum(books_worth_scanning, key=lambda x: x.book_score)
+
+        return books_worth_scanning[: self.books_per_day], score
+
+    def get_status(self, time: int, deadline: int) -> Tuple[List[Book], List[Book]]:
+
+        scanned = []
+        unscanned = copy.copy(self.books)
+
+        num_days = max(min(time, deadline) - self.sign_up_day, 0)
+
+        for book in range(num_days * self.books_per_day):
+
+            if len(unscanned) > 0:
+
+                scanned.append(unscanned.pop(0))
+
+        return scanned, unscanned

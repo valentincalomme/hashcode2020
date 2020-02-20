@@ -8,6 +8,7 @@ authors = ["Valentin Calomme <info@valentincalomme.com>"]
 python = "^3.7"
 pyschedule = "^0.2.34"
 pulp = "^2.0"
+numpy = "^1.18.1"
 
 [tool.poetry.dev-dependencies]
 black = "^19.10b0"
