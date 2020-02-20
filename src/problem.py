@@ -25,3 +25,32 @@ class Problem:
         """
 
         raise NotImplementedError
+
+
+class Book:
+    def __init__(self, book_id: int, book_score: int):
+
+        self.book_id = book_id
+        self.book_score = book_score
+
+    def __hash__(self):
+
+        return hash((self.book_id, self.book_score))
+
+
+class Library:
+    def __init__(
+        self, library_id: int, books: List[Book], sign_up_time: int, books_per_day: int
+    ):
+
+        self.library_id = library_id
+        self.books = sorted(books, key=lambda x: x.book_score, reverse=True)
+        self.sign_up_time = sign_up_time
+        self.books_per_day = books_per_day
+
+
+class Time:
+    def __init__(self, days: int):
+
+        self.days = days
+        self.current_day = 0
