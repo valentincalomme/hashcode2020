@@ -16,17 +16,6 @@ class Solution:
 
         raise NotImplementedError
 
-    def is_valid(self) -> bool:
-        """Checks whether the solution is valid
-
-        Returns
-        -------
-        bool
-            True if solution is valid, False if it isn't
-        """
-
-        raise NotImplementedError
-
     def to_file(self, score: int) -> Path:
         """Persists the solution to a file
 
