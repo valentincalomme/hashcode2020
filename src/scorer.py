@@ -21,14 +21,3 @@ class Scorer:
         """
 
         raise NotImplementedError
-
-    def is_valid(self, solution: Solution, problem: Problem) -> bool:
-        """Checks whether the solution is valid
-
-        Returns
-        -------
-        bool
-            True if solution is valid, False if it isn't
-        """
-
-        raise NotImplementedError
