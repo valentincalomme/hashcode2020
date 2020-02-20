@@ -1,8 +1,7 @@
 .idea
-src/__pycache__/
-
-notebooks/.ipynb_checkpoints/
-
+**/.ipynb_checkpoints/
 *.code-workspace
-
-src/solvers/__pycache__/
+**/__pycache__/
+.venv/
+.vscode/
+.env
