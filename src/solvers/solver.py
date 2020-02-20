@@ -14,6 +14,6 @@ class Solver:
 
         return solution
 
-    def solve(self, problem: Problem) -> Solution:
+    def yield_solutions(self, problem: Problem) -> Solution:
 
         raise NotImplementedError
