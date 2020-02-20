@@ -7,10 +7,6 @@ import os
 class Solution:
     """Represents the solution to the instance of a problem"""
 
-    def remove_duplicates(self):
-
-        pass
-
     def __init__(self, problem_name: str, libraries: List[Library]):
 
         self.solution_id = str(uuid.uuid4())
@@ -18,15 +14,14 @@ class Solution:
         self.libraries = libraries
         self.scanned_books = {}
 
-    def add_library(self, library: Library, time: int) -> Solution:
-
-        library.sign_up_day = time
-        self.libraries.append(library)
-        self.books.union(set(library.books))
-
-        return self
-
     def serialize(self) -> str:
+        """Creates a string representation of the solution
+
+        Returns
+        -------
+        str
+            String representation of the solution
+        """
 
         raw = f"{len(self.libraries)}\n"
 
@@ -39,16 +34,23 @@ class Solution:
 
         return raw
 
-    def to_file(self) -> Path:
+    def to_file(self, score: int = 0) -> Path:
         """Persists the solution to a file
+
+        Parameters
+        ----------
+        score : int, optional
+            Score of that particular solution, useful for sorting, by default 0
 
         Returns
         -------
         Path
-            Relative path to the solution file
+            Relative path to the solution file[summary]
         """
 
-        filename = f"../data/solutions/{self.problem_name}.{self.solution_id}.solution"
+        filename = (
+            f"../data/solutions/{self.problem_name}.{score}.{self.solution_id}.solution"
+        )
 
         with open(filename, "w", encoding="utf-8") as file:
 

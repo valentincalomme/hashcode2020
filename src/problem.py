@@ -41,18 +41,22 @@ class Problem:
 
         # Parse header
         header = get_row_data(rows[0])
+
         self.num_books = header[0]  # B = Number of different books
         self.num_libraries = header[1]  # L = Number of libraries
-        self.num_days = header[2]  # D =Number of days available
+        self.num_days = header[2]  # D = Number of days available
         self.book_scores = get_row_data(rows[1])  # Scores for each Book
 
         # Parse sections
         self.libraries = []
+
         for j in range(2, len(rows) - 2, 2):
+
             if rows[j] == "":
                 # For some reason the different data files are inconsistent and may contain 1 OR 2 empty lines at the end of the file (?)
                 # Just skip empty lines..
                 continue
+
             library_info = get_row_data(rows[j])  # Info about library
             books_in_library = get_row_data(
                 rows[j + 1]

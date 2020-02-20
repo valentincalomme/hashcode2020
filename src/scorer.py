@@ -26,8 +26,12 @@ class Scorer:
         # Build a list of books to scan withing D days
         num_days_elapsed = 0
         library_offset = 0
-        scanlist = [[] for i in range(problem.num_days)]  # List of books to be scanned on each day
-        while num_days_elapsed < problem.num_days and library_offset < len(solution.libraries):
+        scanlist = [
+            [] for i in range(problem.num_days)
+        ]  # List of books to be scanned on each day
+        while num_days_elapsed < problem.num_days and library_offset < len(
+            solution.libraries
+        ):
             library: Library = solution.libraries[library_offset]
             library_offset += 1
 
@@ -43,7 +47,9 @@ class Scorer:
                 book_scan_days_elapsed += 1
                 if scan_days_offset >= problem.num_days:
                     break
-                scanlist[scan_days_offset] += (library.books[book_scan_offset:book_scan_offset+library.books_per_day])
+                scanlist[scan_days_offset] += library.books[
+                    book_scan_offset : book_scan_offset + library.books_per_day
+                ]
 
         # Sum score in scan list (ignoring duplicates)
         score = 0

@@ -17,7 +17,9 @@ class GreedySolver(Solver):
 
         for library in libraries:
 
-            library.books_to_scan = sorted(library.books, key=lambda x: x.book_score, reverse=True)
+            library.books_to_scan = sorted(
+                library.books, key=lambda x: x.book_score, reverse=True
+            )
 
         solution = Solution(problem_name=problem.name, libraries=libraries)
 
