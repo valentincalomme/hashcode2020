@@ -7,6 +7,10 @@ import os
 class Solution:
     """Represents the solution to the instance of a problem"""
 
+    def remove_duplicates(self):
+
+        pass
+
     def __init__(self, problem_name: str, libraries: List[Library]):
 
         self.solution_id = str(uuid.uuid4())
@@ -29,7 +33,9 @@ class Solution:
         for library in self.libraries:
 
             raw += f"{library.library_id} {len(library.books_to_scan)}\n"
-            raw += " ".join([str(book.book_id) for book in library.books_to_scan]) + "\n"
+            raw += (
+                " ".join([str(book.book_id) for book in library.books_to_scan]) + "\n"
+            )
 
         return raw
 

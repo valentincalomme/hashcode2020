@@ -7,6 +7,8 @@ from solvers import Solver
 
 
 class RandomSolver(Solver):
+    """Generates random solutions"""
+
     def yield_solutions(self, problem: Problem) -> Solution:
 
         while True:
