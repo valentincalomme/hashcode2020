@@ -1,3 +1,0 @@
-pulp==2.0
-pyparsing==2.4.6
-pyschedule==0.2.34
